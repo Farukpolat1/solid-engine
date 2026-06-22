@@ -13,7 +13,15 @@
 
   <ul>
     <% @todos.each do |todo| %>
-      <li><%= todo[:title] %></li>
+      <li>
+        <form action="/toggle/<%= todo[:id] %>" method="post" style="display:inline">
+          <button type="submit"><%= todo[:completed] ? '✅' : '⬜' %></button>
+        </form>
+        <%= todo[:completed] ? '<s>' + todo[:title] + '</s>' : todo[:title] %>
+        <form action="/delete/<%= todo[:id] %>" method="post" style="display:inline">
+          <button type="submit">Sil</button>
+        </form>
+      </li>
     <% end %>
   </ul>
 
